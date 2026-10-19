@@ -11,4 +11,4 @@ images:
   newTag: main
 - name: todo-web
   newName: ghcr.io/captain-jpexstudio/cicd-lab/web
-  newTag: main
+  newTag: 65e47eed01773600276357f89c3ac0a99354c981
