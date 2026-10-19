@@ -8,7 +8,7 @@ resources:
 images:
 - name: todo-api
   newName: ghcr.io/captain-jpexstudio/cicd-lab/api
-  newTag: jenkins-8
+  newTag: jenkins-10
 - name: todo-web
   newName: ghcr.io/captain-jpexstudio/cicd-lab/web
   newTag: main
