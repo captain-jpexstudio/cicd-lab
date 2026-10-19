@@ -34,7 +34,7 @@ pipeline {
         sh 'trivy image --cache-dir "$JENKINS_HOME/.trivy" --exit-code 1 --severity CRITICAL --ignore-unfixed $IMAGE:$TAG'
       }
     }
-    stage('올리기') {
+   stage('올리기') {
       when { anyOf { changeset 'api/**'; triggeredBy 'UserIdCause' } }
       steps {
         sh 'echo "$GH_PSW" | docker login ghcr.io -u "$GH_USR" --password-stdin'
@@ -50,8 +50,8 @@ pipeline {
           kustomize edit set image todo-api=$IMAGE:$TAG
           cd -
           git -c user.name="jenkins" -c user.email="jenkins@lab.local" commit -am "deploy(dev): api $TAG [skip ci]"
-          git pull --rebase https://$GH_USR:$GH_PSW@github.com/$GH_USR/$REPO.git main
           git push https://$GH_USR:$GH_PSW@github.com/$GH_USR/$REPO.git main
+          git pull --rebase https://$GH_USR:$GH_PSW@github.com/$GH_USR/$REPO.git main
         '''
       }
     }

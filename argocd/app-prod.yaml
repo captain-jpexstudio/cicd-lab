@@ -1,0 +1,18 @@
+# 미션 2: prod 환경 — repoURL의 <아이디>를 본인 GitHub 아이디로
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/captain-jpexstudio/cicd-lab.git
+    targetRevision: main
+    path: deploy/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: todo-prod
+  syncPolicy:
+    syncOptions:            # automated 없음 = 사람이 Sync를 눌러야 배포
+    - CreateNamespace=true
